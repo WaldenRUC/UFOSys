@@ -1,0 +1,36 @@
+save_note: 'ufo'
+decomposer_method: 'ufo'
+generator_method: 'ufo'
+retriever_sources: ~
+extractor_method: 'ufo'
+verifier_method: 'ufo'
+
+# ----- env settings -----
+save_dir: "/fs/fast/u2022000150/project/ufo/output/"
+dataset_name: "felm-wk"
+
+openai_apikey: "xxx"
+openai_baseurl: "https://api.openai.com/v1/"
+openai_model: "gpt-4o-mini"
+
+retriever:
+  human_written_evidence:
+    index_name: "bm25_psgs_index"
+    search_num: 5
+    es_url: "http://0.0.0.0:9200"
+  web_search:
+    serper_apikey: "xxx"
+    cache_path: /fs/fast/u2022000150/project/ufo/.cache.json
+    snippet_cnt: 10
+  llm_knowledge:
+    temperature: 1
+    sampled_n: 5
+    top_p: 0.9
+    max_tokens: 512
+    openai_apikey: "xxx"
+    openai_baseurl: "https://api.openai.com/v1/"
+    openai_model: "gpt-4o-mini"
+
+# ===== evaluator =====
+save_metric_score: True
+save_intermediate_data: True
