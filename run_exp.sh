@@ -1,4 +1,4 @@
-DATASET_NAME=factqa/factool-qa
+DATASET_NAME=factool-qa
 SUB_NAME=GPT4
 
 #& ========== Local vLLM ==========

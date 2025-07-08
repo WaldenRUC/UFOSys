@@ -1,0 +1,16 @@
+system: |-
+  You are a brilliant assistant.
+user: |-
+  You are given a question and a reference text. Your task is to extract the most matching answer from the reference text to the question. 
+  You should extract the answer only from the reference text. If the reference text is irrelevant to the question and does not provide any valuable information, the matching answer MUST be replaced with "NOANS".
+  The response should be a dictionary with two keys - "reasoning" and "answer", which correspond to the reasoning and the extracted answer from the given reference text. 
+  The following is the given derived question
+  [question]: {question}
+  The following is the provided reference text
+  [reference]: {evidence}
+  You should only respond in format as described below. DO NOT RETURN ANYTHING ELSE. START YOUR RESPONSE WITH '{{'.
+  [response format]:
+  {{
+    "reasoning": "Why is the extracted matching answer appropriate to the question? If the answer is NOANS, explain why the reference text is irrelevant and does not provide any valuable information for answering the question."
+    "answer": "NOANS if no answer exists in the reference text; otherwise, provide the extracted matching answer."
+  }}

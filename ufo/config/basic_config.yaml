@@ -1,0 +1,25 @@
+# ------------------------------------------------Global Paths------------------------------------------------#
+# path to various methods
+
+# -------------------------------------------------LLM Evaluator-------------------------------------------------#
+openai_apikey: "xxx"
+openai_baseurl: "https://api.openai.com/v1/"
+openai_model: "gpt-4o-mini"
+
+
+# ---------- Retriever ----------
+retriever:
+  human_written_evidence:
+    index_name: bm25_psgs_index
+    es_url: http://0.0.0.0:9200
+  search_engine:
+    serper_apikey: "xxx"
+  llm_knowledge:
+    temparature: 1
+    sampled_n: 3
+    top_k: 50
+    top_p: 0.9
+    max_tokens: 512
+    openai_apikey: "xxx"
+    openai_baseurl: "https://api.openai.com/v1/"
+    openai_model: "gpt-4o-mini"

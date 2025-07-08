@@ -1,0 +1,7 @@
+paper/
+.gradio/
+__pycache__/
+test/
+nohup.out
+temp.json
+.DS_Store

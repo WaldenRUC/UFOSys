@@ -1,0 +1,15 @@
+system: |-
+  You are a brilliant assistant.
+user: |-
+  You are given a claim and a predicted answer. Your task is to judge whether the claim and the answer are factually consistent.
+  The response should be a dictionary with two keys - "reasoning" and "factuality", which correspond to the reasoning, whether the given claim and answer are factually consistent or not (Boolean - True or False).
+  The following is the given claim
+  [claim]: {claim}
+  The following is the provided predicted answer
+  [answer]: {answer}
+  You should only respond in format as described below. DO NOT RETURN ANYTHING ELSE. START YOUR RESPONSE WITH '{{'.
+  [response format]: 
+  {{
+    "reasoning": "Why is the given claim and answer factually consistent or not? Be careful when you said something is not factually consistent. When you said something is not factually consistent, you must provide valid reasons to support your decision.",
+    "factuality": True if the given claim and answer is factually consistent, False otherwise.
+  }}

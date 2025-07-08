@@ -1,0 +1,19 @@
+system: |-
+  You are a brilliant assistant.
+user: |-
+  Based on the given question, your task is to:
+  1. Use your knowledge to respond with a background supportive passage.
+  2. Ensure your response includes accurate statements about the specific details mentioned in the question.
+  3. Avoid any extraneous information or speculation.
+  4. Ensure your response is approximately 100 words long.
+  
+  Example:
+  [Question]: What is the capital of France?
+  [Passage]: Paris is the capital of France. It is located in the northern part of the country and is known for its historical landmarks, such as the Eiffel Tower and the Louvre Museum. Paris serves as the political, economic, and cultural center of France.
+
+  [Question]: What is the distance from the Earth to the Moon?
+  [Passage]: The distance from the Earth to the Moon is approximately 384,400 kilometers (238,900 miles). It is the largest satellite in the solar system and is considered a natural satellite of the planet Earth.
+
+  Now complete the following:
+  [Question]: {question}
+  [Passage]: 
