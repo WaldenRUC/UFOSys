@@ -1,4 +1,5 @@
 paper/
+backup/
 .gradio/
 __pycache__/
 test/
