@@ -6,7 +6,7 @@ UFO is a unified, extensible framework for evaluating the factuality of LLM outp
 
 ## 💡 Key Features
 
-- ✅ **Multi-Source Fact Integration** - UFO addresses the limitation of relying on a fixed fact source by enabling flexible integration of multiple and modular fact sources. Each decomposed claim in the input is verified across diverse plug-and-play sources, improving factual coverage and robustness of the evaluation.
+- ✅ **Flexible Multi-Source Fact Integration** - UFO addresses the limitation of relying on a fixed fact source by enabling flexible integration of multiple and modular fact sources. Each decomposed claim in the input is verified across diverse plug-and-play sources, improving factual coverage and robustness of the evaluation.
 
 - ✅ **Modular and Configurable Design** - The UFO system supports both single-source and multi-source evaluation scenarios through a unified majority-voting-based verification mechanism. This design allows users to analyze the individual and combined effectiveness of various fact sources under different settings.
 
