@@ -4,6 +4,24 @@
 
 UFO is a unified, extensible framework for evaluating the factuality of LLM outputs, supporting multiple plug-and-play fact sources, including human-written evidence, web search results, and internal LLM knowledge. Users can also freely add new customized fact sources to benchmark LLMs and fact sources.
 
+## 📑 Table of Contents
+
+- [🛸 UFO: A Unified Framework for Factuality Evaluation with Multiple Plug-and-Play Fact Sources](#-ufo-a-unified-framework-for-factuality-evaluation-with-multiple-plug-and-play-fact-sources)
+  - [💡 Key Features](#-key-features)
+  - [📂 Project Structure](#-project-structure)
+  - [🛠️ Quickstart](#️-quickstart)
+  - [🖥 Screenshots](#-screenshots)
+  - [⚙️ Usage](#️-usage)
+    - [🔧 Configuration](#-configuration)
+    - [📚 Fact sources](#-fact-sources)
+      - [1. 🔎 Human-written Evidence Retrieval via ElasticSearch (Optional)](#1-🔎-human-written-evidence-retrieval-via-elasticsearch-optional)
+      - [2. 🌐 Web Search Results (via Serper API)](#2--web-search-results-via-serper-api)
+      - [3. 🤖 Internal LLM Knowledge](#3--internal-llm-knowledge)
+      - [4. 🧩 Set your own fact sources](#4--set-your-own-fact-sources)
+  - [🚀 Run the UFO System Programmatically](#-run-the-ufo-system-programmatically)
+  - [🚀 Run the UFO System Interactively](#-run-the-ufo-system-interactively)
+  - [📄 License](#-license)
+
 ## 💡 Key Features
 
 - ✅ **Flexible Multi-Source Fact Integration** - UFO addresses **the limitation of relying on a fixed or fused fact source** by enabling flexible integration of multiple and modular fact sources. Each decomposed claim in the input is verified across diverse plug-and-play sources, improving factual coverage and robustness of the evaluation.
