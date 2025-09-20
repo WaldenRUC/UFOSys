@@ -69,14 +69,6 @@ $ python app.py
   <em>The interface contains two parts: System Setup and Evaluation Results.</em>
 </p>
 
-
-
-
-
-
-
-
-
 ## ⚙️ Usage
 The UFO system can be used in two primary ways:
 - 🧑‍💻 Programmatically via Python script
@@ -87,8 +79,9 @@ Before running the system, update the following fields in `config.yaml`:
 - `openai_apikey`
 - `openai_baseurl`
 - `openai_model`
+- `retriever`
 
-You can choose between online LLM inference services and local backends as the model source:
+You can choose between **online LLM inference services** and **local backends** as the model source:
 
 ☁️ Online Services: 
 - [OpenAI](https://openai.com)
@@ -101,9 +94,8 @@ To serve a local model (e.g., Qwen2.5-14B-Instruct) using vllm:
 CUDA_VISIBLE_DEVICES=0 nohup vllm serve <model_name> --dtype auto --api-key EMPTY --port 2233 --tensor-parallel-size 1 > qwen2.5-14b.log 2>&1 &
 ```
 
-
 ### 📚 Fact sources
-UFO supports multiple plug-and-play fact sources. You can enable and configure them individually in `config.yaml`.
+UFO supports multiple plug-and-play fact sources. You can enable and configure them individually in `config.yaml`. You can also add your own customized fact sources with a few simple steps.
 
 #### 1. 🔎 Human-written Evidence Retrieval via ElasticSearch (Optional)
 To enable ElasticSearch-based retrieval, follow these steps:
@@ -132,6 +124,13 @@ llm_knowledge:
 ```
 You can point to either OpenAI, SiliconFlow, or a local vLLM backend (see earlier section).
 
+#### 4. 🧩 Set your own fact sources
+You can add customized fact sources for in-domain evaluation tasks. Once added, they will be available in both the web UI and the Python interface.
+
+- Configure the new fact source in the `retriever` section of `config.yaml` file.
+- Implement your fact source in `ufo/retriever/template_retriever.py` file, referring to the existing UFO implementations as examples.
+- Register your fact source in `ufo/retriever/__init__.py` and `ufo/utils/utils.py`
+- ⭐️ Done! Your fact source is now ready to benchmark both LLMs and fact sources.
 
 
 ## 🚀 Run the UFO System Programmatically
@@ -144,8 +143,8 @@ To run the UFO system in batch mode via script, first configure the following in
     - `openai_baseurl`
     - `openai_model`
 3. Fact source settings
-    - Configure your preferred fact sources in `config.yaml` (e.g., `llm_knowledge`, `elasticsearch`, or `serper`) as described in the previous section.
-    - To use a custom or additional fact source, you can simply implement it as a new module under `ufo/retriever/` and register it in the configuration.
+    - Specify your preferred fact sources in `config.yaml` (e.g., `llm_knowledge`, `elasticsearch`, or `serper`) as described in the previous section.
+    - To use a custom or additional fact source, you can simply implement it as a new module under `ufo/retriever/` and register it in the configuration. See [🧩 Set your own fact sources](#4--set-your-own-fact-sources) for details.
 
 Run the evaluation script:
 ```bash
