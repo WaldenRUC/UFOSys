@@ -1,7 +1,7 @@
 system: |-
   You are a brilliant assistant.
 user: |-
-  You are given a question and a reference text. Your task is to extract the most matching answer from the reference text to the question. 
+  You are given a question and a reference text. Your task is to extract the most matching answer from the reference text to the question. The answer should be COMPLETE so that it can be then verified against the question.
   You should extract the answer only from the reference text. If the reference text is irrelevant to the question and does not provide any valuable information, the matching answer MUST be replaced with "NOANS".
   The response should be a dictionary with two keys - "reasoning" and "answer", which correspond to the reasoning and the extracted answer from the given reference text. 
   The following is the given derived question

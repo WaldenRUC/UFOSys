@@ -31,6 +31,8 @@ retriever:
     openai_baseurl: "https://api.openai.com/v1/"
     openai_model: "gpt-4o-mini"
 
+  #TODO you can add more customized fact sources in the config.yaml file
+
 # ===== evaluator =====
 save_metric_score: True
 save_intermediate_data: True

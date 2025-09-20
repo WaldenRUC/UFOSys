@@ -85,8 +85,8 @@ def factuality_evaluation_text(input_text: str, input_reference_answers: str, or
         }
     ]
     print(f'system_input: {system_input}')
-    output_dataset = pipeline.run(system_input)
-    with open('./temp.json', 'w', encoding='utf-8') as fw:
+    output_dataset = pipeline.run(system_input, ordered_source_names)
+    with open('./result.json', 'w', encoding='utf-8') as fw:
         json.dump(output_dataset, fw, ensure_ascii=False, indent=2)
     if is_sequential:
         preds, from_sources = get_multi_source_seq_majority(
@@ -127,7 +127,7 @@ def factuality_evaluation_file(file, ordered_source_names: list=['human', 'web',
             'response': _response,
             'reference_answers': _reference
         })
-    output_dataset = pipeline.run(system_input)
+    output_dataset = pipeline.run(system_input, ordered_source_names)
     with open('./temp.json', 'w', encoding='utf-8') as fw:
         json.dump(output_dataset, fw, ensure_ascii=False, indent=2)
     
@@ -154,10 +154,8 @@ def factuality_evaluation_file(file, ordered_source_names: list=['human', 'web',
 # 创建Gradio界面
 with gr.Blocks(title="UFO Dashboard", theme=gr.themes.Soft(font=['Georgia'])) as demo:
     gr.Markdown("<div style='text-align: center;'><h1>🛸UFO Dashboard</h1></div>")
-    gr.Markdown("## The UFO system categorizes and integrates three fact sources for factuality evaluation: ")
-    gr.Markdown("### ✍🏻 Human-written evidence")
-    gr.Markdown("### 🌐 Web search results")
-    gr.Markdown("### 🤖 LLM knowledge")
+    gr.Markdown("## The UFO system integrates three fact sources for factuality evaluation: ")
+    gr.Markdown("### ✍🏻 Human-written evidence; 🌐 Web search results; and 🤖 LLM knowledge")
     # gr.Markdown("Add some texts, and the system will output factuality score with configured multiple fact sources!")
     with gr.Row():
         with gr.Column(scale=1, min_width=300):
@@ -178,10 +176,11 @@ with gr.Blocks(title="UFO Dashboard", theme=gr.themes.Soft(font=['Georgia'])) as
                 file_types=[".jsonl"],  # 允许的文件类型
                 height=170
             )
-    with gr.Row():
-        is_sequential = gr.Checkbox(label='Sequential Evaluation', value=True)
+    
     with gr.Row():
         ordered_source_names = gr.Dropdown(choices=['human', 'web', 'knowledge'], multiselect=True, label='Select Fact Sources', value=['human', 'web', 'knowledge'])
+    with gr.Row():
+        is_sequential = gr.Checkbox(label='Sequential Evaluation (Multi-Seq)', value=True)
     
     with gr.Row():
         with gr.Column(scale=2):
@@ -216,8 +215,8 @@ with gr.Blocks(title="UFO Dashboard", theme=gr.themes.Soft(font=['Georgia'])) as
     gr.Examples(
         examples=[
             [
-                "Suzhou, a renowned historical and cultural city in China, is located in the southeastern part of Jiangsu Province, near Beijing.", 
-                "Suzhou is a major prefecture-level city in southeastern part of Jiangsu province, China, bordered by Zhejiang province to the south, Shanghai municipality to the east, and Anhui province to the northwest. As part of the Yangtze Delta megalopolis, it is a major economic center and focal point of trade and commerce."],
+                "In the year 2026, AAAI will be scheduled in Singapore. The first AAAI conference was held in 1990.", 
+                "We are pleased to announce the Fortieth AAAI Conference on Artificial Intelligence (AAAI-26), which will be held in Singapore EXPO from January 20 to January 27, 2026."],
         ],
         inputs=[input_text, reference_answers],
         run_on_click=False,

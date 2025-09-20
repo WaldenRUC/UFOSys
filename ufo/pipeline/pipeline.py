@@ -103,7 +103,12 @@ class UFOPipeline(BasicPipeline):
             claims_with_evidences.append((c, q, e))
         return claims_with_evidences
     
-    def run(self, dataset, do_eval=True, pred_process_fun=None):
+    def run(self, dataset, ordered_source_names=None, do_eval=True, pred_process_fun=None):
+        if ordered_source_names != None:
+            ordered_items = [(k, self.retrievers[k]) for k in ordered_source_names]
+            remaining_items = [(k, v) for k, v in self.retrievers.items() if k not in ordered_source_names]
+            self.retrievers = dict(ordered_items + remaining_items)
+            # self.retrievers = {key: self.retrievers[key] for key in ordered_source_names}
         if self.is_online:
             # input must be [{}, {}, ...]
             evaluated_texts = [item['response'] for item in dataset]
@@ -161,6 +166,7 @@ class UFOPipeline(BasicPipeline):
         #& ===== STEP 3: retriever (with several sources) =====
         evidence_list = {}
         for source_id, (source, custom_retriever) in enumerate(self.retrievers.items()):
+            if source not in ordered_source_names: continue
             source_name = f'{source}_sources'
             rich.print(f'STEP 3 [{source_id+1}/{len(self.retrievers.keys())}] - {source_name} retrieval')
             time1 = time.time()
@@ -178,6 +184,7 @@ class UFOPipeline(BasicPipeline):
         #& get the answer from each evidence
         extraction_list = {}
         for source_id, source in enumerate(self.retrievers.keys()):
+            if source not in ordered_source_names: continue
             source_name = f'{source}_sources'
             rich.print(f'STEP 4 [{source_id+1}/{len(self.retrievers.keys())}] - {source_name} extraction')
             extractions = []
@@ -202,6 +209,7 @@ class UFOPipeline(BasicPipeline):
         #& ===== STEP 5: verifier =====
         #& verify所有可用的事实源
         for source_id, source in enumerate(self.retrievers.keys()):
+            if source not in ordered_source_names: continue
             source_name = f'{source}_sources'
             rich.print(f'STEP 5 [{source_id+1}/{len(self.retrievers.keys())}] - {source_name} verification')
             details, details_ppl = [], []

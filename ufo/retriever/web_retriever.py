@@ -18,6 +18,7 @@ class GoogleSerperAPIWrapper:
         self.hl = "en"
         # self.serper_api_key = os.environ.get("SERPER_API_KEY", None)
         self.serper_api_key = api_key
+        print(f'initialize serper api key! {self.serper_api_key}')
         assert self.serper_api_key is not None
         assert self.serper_api_key != ''
 
@@ -106,7 +107,7 @@ class GoogleSerperAPIWrapper:
                 rich.print(f'input for search: {payload}')
                 rich.print(f'raise exception! sleep for 1 second: {e}')
                 time.sleep(1)
-        assert len(ids) == len(response), f'got length {len(ids)} and {len(response)}'
+        assert len(ids) == len(response), f'got length {len(ids)} and {len(response)}\nids: {ids}\nresponse: {response}'
         results = [(_id, _res) for _id, _res in zip(ids, response)]
         return results
     

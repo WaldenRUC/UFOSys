@@ -278,6 +278,7 @@ def get_retriever(config):
     if 'knowledge' in config['retriever_sources']:
         retriever_knowledge = getattr(importlib.import_module('ufo.retriever'), 'KnowledgeRetriever')(config)
         objects['knowledge'] = retriever_knowledge
+    #TODO add customized fact sources
     return objects
 
 def get_extractor(config):

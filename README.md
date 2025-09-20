@@ -58,9 +58,16 @@ $ python app.py
 ```
 
 ## 🖥 Screenshots
-![The UFO web interface.](figures/demo.png)
 
-![The interface contains two parts: System Setup and Evaluation Results.](figures/interface.png)
+<p align="center">
+  <img src="figures/demo.png" width="600"><br>
+  <em>The UFO web interface.</em>
+</p>
+
+<p align="center">
+  <img src="figures/interface.png" width="600"><br>
+  <em>The interface contains two parts: System Setup and Evaluation Results.</em>
+</p>
 
 
 
