@@ -1,19 +1,47 @@
 # 🛸 UFO: A Unified Framework for Factuality Evaluation with Multiple Plug-and-Play Fact Sources
 
-*Submission to EMNLP 2025 (System Demonstration Track)*
+*Submission to AAAI 2026 (Demo Track)*
 
-UFO is a unified, extensible framework for evaluating the factuality of LLM outputs, supporting multiple plug-and-play fact sources, including human-written evidence, web search results, and internal LLM knowledge.
+UFO is a unified, extensible framework for evaluating the factuality of LLM outputs, supporting multiple plug-and-play fact sources, including human-written evidence, web search results, and internal LLM knowledge. Users can also freely add new customized fact sources to benchmark LLMs and fact sources.
 
 ## 💡 Key Features
 
-- ✅ **Flexible Multi-Source Fact Integration** - UFO addresses the limitation of relying on a fixed fact source by enabling flexible integration of multiple and modular fact sources. Each decomposed claim in the input is verified across diverse plug-and-play sources, improving factual coverage and robustness of the evaluation.
+- ✅ **Flexible Multi-Source Fact Integration** - UFO addresses **the limitation of relying on a fixed or fused fact source** by enabling flexible integration of multiple and modular fact sources. Each decomposed claim in the input is verified across diverse plug-and-play sources, improving factual coverage and robustness of the evaluation.
 
-- ✅ **Modular and Configurable Design** - The UFO system supports both single-source and multi-source evaluation scenarios through a unified majority-voting-based verification mechanism. This design allows users to analyze the individual and combined effectiveness of various fact sources under different settings.
+- ✅ **Modular and Configurable Design** - The UFO system supports **both single-source and multi-source evaluation scenarios** through a unified majority-voting-based verification mechanism. This design allows users to analyze and benchmark the individual and combined effectiveness of various fact sources under different settings.
 
 - ✅ **Interactive and Programmatic Interfaces** - The UFO system can be used in two modes: 
-    - (1) Interactive Web UI: Users can input or upload texts for evaluation directly through a user-friendly interface. 
-    - (2) Programmatic Interface: Users can easily integrate the UFO system into automated pipelines for batch evaluation.
-    Additionally, the UFO system includes five benchmark datasets from diverse domains, enabling the evaluation of advanced LLMs such as GPT-4 and DeepSeek-V3.
+    - (1) Interactive Web UI: Users can input or upload texts for evaluation directly through a user-friendly web interface. 
+    - (2) Programmatic Interface: Users can easily adjust and add customized fact sources and integrate the UFO system into automated pipelines for batch evaluation. Additionally, the UFO system includes five benchmark datasets from diverse domains, enabling the evaluation of advanced LLMs such as GPT-4 and DeepSeek-V3.
+
+## 📂 Project Structure
+```bash
+UFOSys/
+├── dataset/             # Collected five datasets for evaluation
+│   ├── factcheckgpt/    # Datasets w/o human annotations
+│   ├── factool-qa/
+│   ├── felm-wk/
+│   ├── selfaware/    
+│   └── wikibio-labeled/ # Datasets w/ human annotations
+├── ufo/                 # UFO Source code
+│   ├── __init__.py
+│   ├── config/
+│   ├── dataset/
+│   ├── decomposer/  # Fact unit extraction
+│   ├── evaluate/   # Evaluation scenarios
+│   ├── extractor/  # Fact source verification
+│   ├── generator/  # Generate query for each fact unit
+│   ├── pipeline/   # Assemble each UFO module
+│   ├── retriever/  # Fact sources setting
+│   ├── utils/      
+│   └── verifier/   # Fact consistency discrimination
+├── requirements.txt     # Python dependencies
+├── app.py      # Launch the web interface
+├── config.yaml      # Basic configuration file
+├── example_data_upload.jsonl # The sample JSONL file for evaluation
+├── README.md            # Project description
+└── LICENSE              # License file
+```
 
 ## 🛠️ Quickstart
 Requirements: Python 3.11+
@@ -23,16 +51,16 @@ $ git clone git@github.com:WaldenRUC/UFOSys.git
 $ cd UFOSys/
 # install python dependencies
 $ pip install -r requirements.txt
-# configure fact sources
+# configure settings such as fact sources
 $ vi config.yaml
 # launch the system with the interactive Web UI
 $ python app.py
 ```
 
 ## 🖥 Screenshots
-![](figures/demo.png)
-![](figures/demo-example.png)
+![The UFO web interface.](figures/demo.png)
 
+![The interface contains two parts: System Setup and Evaluation Results.](figures/interface.png)
 
 
 
