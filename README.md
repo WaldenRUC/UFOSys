@@ -38,7 +38,7 @@ UFO is a unified, extensible framework for evaluating the factuality of LLM outp
 <p align="center">
   <img src="figures/overview.png" width="820" alt="UFO system overview: decomposition → retrieval (human/web/LLM) → verification → aggregation">
   <br>
-  <em>Figure 1: Overall pipeline of UFO. Claims are decomposed, verified across plug-and-play fact sources such as human evidence, web search, and LLM knowledge, then aggregated via implemented Single Source / Multi-MV / Multi-Seq scenarios.</em>
+  <em>Figure 1: UFO pipeline. Claims are decomposed, verified across plug-and-play fact sources such as human evidence, web search, and LLM knowledge, then aggregated via implemented Single Source / Multi-MV / Multi-Seq scenarios.</em>
 </p>
 
 ## 📂 Project Structure
